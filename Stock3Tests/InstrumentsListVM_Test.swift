@@ -18,6 +18,47 @@ final class InstrumentsListVM_Test: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    func testLoadInstruments_IsLoading() async {
+        let instrument = Instrument(id: 0,
+                                    name: "Test",
+                                    quotations: [
+                                        Quotation(exchange: Exchange(id: 0, abbreviation: "ABB"),
+                                                  quote: Quote(value: 123.123))
+                                    ])
+        let repository = MockRepository(instruments: [instrument])
+        let useCase = DefaultFetchInstrumentsUseCase(instrumentsRepository: repository)
+        let viewModel = InstrumentsListVM(fetchInstrumentsUseCase: useCase)
+        viewModel.isLoading = true
+
+        // Act
+        let result = await viewModel.loadInstruments()
+
+        // Assert
+        XCTAssertTrue(result.isEmpty)
+    }
+
+    func testLoadInstruments_IsNotLoading() async {
+        let instrument = Instrument(id: 0,
+                                    name: "Test",
+                                    quotations: [
+                                        Quotation(exchange: Exchange(id: 0, abbreviation: "ABB"),
+                                                  quote: Quote(value: 123.123))
+                                    ])
+        let exptectedResult = [InstrumentsListItemVM(instrument: instrument)]
+        let repository = MockRepository(instruments: [instrument])
+        let useCase = DefaultFetchInstrumentsUseCase(instrumentsRepository: repository)
+        let viewModel = InstrumentsListVM(fetchInstrumentsUseCase: useCase)
+        viewModel.isLoading = false
+
+        // Act
+        let result = await viewModel.loadInstruments()
+
+        // Assert
+        XCTAssertEqual(result[0].name, exptectedResult[0].name)
+        XCTAssertEqual(result[0].exchange, exptectedResult[0].exchange)
+        XCTAssertEqual(result[0].quote, exptectedResult[0].quote)
+    }
+
     func testLoadInstruments() {
         // Arrange
 //        let viewModel = InstrumentsListVM

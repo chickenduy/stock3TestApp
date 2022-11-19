@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct InstrumentsListItemVM: Identifiable {
+struct InstrumentsListItemVM: Identifiable, Equatable {
     var id: UUID
     let name: String
     let exchange: String

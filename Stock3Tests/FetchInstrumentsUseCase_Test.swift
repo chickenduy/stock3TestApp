@@ -32,7 +32,7 @@ final class FetchInstrumentsUseCase_Test: XCTestCase {
         let useCase = DefaultFetchInstrumentsUseCase(instrumentsRepository: repository)
 
         // Act
-        let result = await useCase.fetchInstruments()
+        let result = await useCase.fetchInstruments(page: 1)
 
         // Assert
         switch result {
@@ -51,7 +51,7 @@ final class FetchInstrumentsUseCase_Test: XCTestCase {
         let useCase = DefaultFetchInstrumentsUseCase(instrumentsRepository: repository)
 
         // Act
-        let result = await useCase.fetchInstruments()
+        let result = await useCase.fetchInstruments(page: 1)
 
         // Assert
         switch result {

@@ -21,7 +21,7 @@ class MockRepository: Repository {
     }
 
 
-    func loadData() async -> ApiResult<[Instrument]> {
+    func fetchInstruments(page: Int) async -> ApiResult<[Instrument]> {
         if let requestError = error {
             return .failure(requestError)
         }
