@@ -11,7 +11,7 @@ import SwiftUI
 struct Stock3App: App {
     var body: some Scene {
         WindowGroup {
-            InstrumentsListView()
+            InstrumentsListView(viewModel: InstrumentsListVM(fetchInstrumentsUseCase: DefaultFetchInstrumentsUseCase(instrumentsRepository: InstrumentRepository())))
         }
     }
 }
