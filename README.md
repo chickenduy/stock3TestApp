@@ -7,4 +7,4 @@ UI has been implemented with requirements in mind.
 Stretch goals:
 - Change exchange has not been implmented
 - Pagination has been partially implemented (stops refreshing after a while, not sure why)
-- Unit tests have been implmented.
+- Unit tests have been implemented.
